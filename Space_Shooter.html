@@ -18,10 +18,11 @@
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
             setInterval(updateAll, 1000 / 60);
+            document.addEventListener('keydown', keyPressed);
+            document.addEventListener('keyup', keyReleased);
+
 
         }
-
-
 
 
         function updateAll() {
@@ -33,7 +34,10 @@
         function colorRect(x, y, w, h, c) {
             canvasContext.fillStyle = c;
             canvasContext.fillRect(x, y, w, h);
-
+            
         }
+        
+        
+        
 
     </script>
