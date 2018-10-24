@@ -1,0 +1,39 @@
+<!doctype html>
+
+<body>
+    <canvas id="gameCanvas" width="900" height="900"> </canvas>
+
+
+    <script>
+        var canvas,
+            canvasContext;
+        var xpos = 0;
+        var ypos = 0;
+
+        const PSIZE = 50;
+
+
+
+        window.onload = function() {
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+            setInterval(updateAll, 1000 / 60);
+
+        }
+
+
+
+
+        function updateAll() {
+            colorRect(0, 0, canvas.width, canvas.height, 'black');
+            colorRect(canvas.height / 2 - PSIZE / 2 + xpos, canvas.width / 1.5 - PSIZE / 2, PSIZE, PSIZE, 'blue');
+
+        }
+
+        function colorRect(x, y, w, h, c) {
+            canvasContext.fillStyle = c;
+            canvasContext.fillRect(x, y, w, h);
+
+        }
+
+    </script>
