@@ -18,10 +18,9 @@
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
             setInterval(updateAll, 1000 / 60);
+            canvas.addEventListener('mousemove',mouseAction ,false);
 
         }
-
-
 
 
         function updateAll() {
@@ -33,7 +32,21 @@
         function colorRect(x, y, w, h, c) {
             canvasContext.fillStyle = c;
             canvasContext.fillRect(x, y, w, h);
+            
+            
+            function mouseAction(canvas,evt){
+                var rect = canvas.getBoundingClientRect();
+                return {
+                    mouseX:evt.clientX - rect.left,
+                    mouseY:evt.clientY - rect.top };
+                
+                }
+            }
+            
+            
+            
+            
 
-        }
+        
 
     </script>
