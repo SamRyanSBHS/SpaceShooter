@@ -1,17 +1,28 @@
 <!doctype html>
 
 <body>
-    <canvas id="gameCanvas" width="900" height="900"> </canvas>
+    <canvas id="gameCanvas" width="800" height="800"> </canvas>
 
 
     <script>
         var canvas,
             canvasContext;
-        var xpos = 0;
-        var ypos = 0;
-
+        var xpos = 400;
+        var ypos = 700;
         const PSIZE = 50;
+        var xSpeed = 5;
+        var ySpeed = 5;
+        const UP_KEY = 38;
 
+        const DOWN_KEY = 40;
+
+        const LEFT_KEY = 37;
+
+        const RIGHT_KEY = 39;
+        var upKeyPressed = false;
+        var downKeyPressed = false;
+        var leftKeyPressed = false;
+        var rightKeyPressed = false;
 
 
         window.onload = function() {
@@ -27,17 +38,76 @@
 
         function updateAll() {
             colorRect(0, 0, canvas.width, canvas.height, 'black');
-            colorRect(canvas.height / 2 - PSIZE / 2 + xpos, canvas.width / 1.5 - PSIZE / 2, PSIZE, PSIZE, 'blue');
+            colorRect(xpos, ypos, PSIZE, PSIZE, 'blue');
+            playerMove();
 
         }
 
         function colorRect(x, y, w, h, c) {
             canvasContext.fillStyle = c;
             canvasContext.fillRect(x, y, w, h);
-            
+
         }
-        
-        
-        
+
+
+
+        function keyPressed(evt) {
+
+            if (evt.keyCode == UP_KEY) {
+                upKeyPressed = true;
+            }
+            if (evt.keyCode == LEFT_KEY) {
+                leftKeyPressed = true;
+            }
+
+            if (evt.keyCode == RIGHT_KEY) {
+                rightKeyPressed = true;
+            }
+
+            if (evt.keyCode == DOWN_KEY) {
+                downKeyPressed = true;
+            }
+
+        }
+
+        function keyReleased(evt) {
+            if (evt.keyCode == UP_KEY) {
+                upKeyPressed = false;
+            }
+            if (evt.keyCode == DOWN_KEY) {
+                downKeyPressed = false;
+            }
+            if (evt.keyCode == LEFT_KEY) {
+                leftKeyPressed = false;
+            }
+            if (evt.keyCode == RIGHT_KEY) {
+                rightKeyPressed = false;
+            }
+        }
+
+
+
+
+
+
+
+        function playerMove() {
+            if (leftKeyPressed && xpos > 0) {
+                xpos -= xSpeed;
+            }
+
+            if (rightKeyPressed && xpos < canvas.width - PSIZE) {
+                xpos += xSpeed;
+            }
+
+            if (upKeyPressed && ypos > 0) {
+                ypos -= ySpeed;
+            }
+
+            if (downKeyPressed && ypos < canvas.width - PSIZE) {
+                ypos += ySpeed;
+            }
+
+        }
 
     </script>
